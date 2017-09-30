@@ -61,3 +61,5 @@ target/
 *.un~
 
 __pycache__/
+
+*.*~
