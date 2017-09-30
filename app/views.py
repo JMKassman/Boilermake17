@@ -3,15 +3,17 @@ from flask import render_template
 from pymongo import *
 from app import mongo_setup
 
-client = mongo_setup.client.Boilermake17
-db = client.Boilermake17
+db = mongo_setup.client.Boilermake17
+collection = db.main
 
-users = []
-cursor = db.main.find()
-for document in cursor:
-    users.append(document.name)
+#collection.insert_one({"name":"Test Person"})
+
+test = []
+
+for element in collection.find():
+    test.append(element['name'])
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', name=users[0])
+    return render_template('index.html', name=test[0])
