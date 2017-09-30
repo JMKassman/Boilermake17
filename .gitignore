@@ -63,3 +63,6 @@ target/
 __pycache__/
 
 *.*~
+
+# python venv
+flask/
