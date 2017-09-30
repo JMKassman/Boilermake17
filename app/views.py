@@ -1,9 +1,14 @@
 from app import app
 from flask import render_template
-import pymongo
+from pymongo import *
 from app import mongo_setup
 
-db = mongo_setup.client.Boilermake17
+client = mongo_setup.client.Boilermake17
+db = client.Boilermake17
+
+cursor = db.main.find()
+for document in cursor:
+    myUsers=['name']
 
 @app.route('/')
 @app.route('/index')
