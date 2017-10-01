@@ -75,3 +75,4 @@ app/config.py
 
 #deployment packages
 *.zip
+deploy/
