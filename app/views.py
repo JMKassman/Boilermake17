@@ -77,4 +77,4 @@ output = convertCalculatedArrayToReadableTimes(calculateFreeTime(compareFreeArra
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', name=output)
+    return render_template('index.html', output=output, title='Schedule Comparison')
