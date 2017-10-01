@@ -72,3 +72,6 @@ app/mongo_setup.py
 
 #wtf config file
 app/config.py
+
+#deployment packages
+*.zip
