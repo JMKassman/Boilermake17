@@ -14,18 +14,20 @@
  2. flask-wtf
  3. pymongo[tls]
 
+The Installing Flask section on [this page](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) is very helpful
+
  There are 2 files required that are not on GitHub because they contain private information. These 2 files are called _config.py_ and _mongo_setup.py_
 
  The _config.py_ file should look like this, with the secret key replaced
 
- ```
+ ```python
  CSRF_ENABLED = True
  SECRET_KEY = 'this-is-just-a-random-string'
  ```
 
  The _mongo_setup.py_ file is used to setup the initial connection to a mongo database. The file should look like this if using mongodb atlas. The only requirement is that a client variable is created that points to a mongo database
 
- ```
+ ```python
  from pymongo import *
  client = MongoClient("Replace-with-mongo-db-atlas-URI-connection-string")
 ```
