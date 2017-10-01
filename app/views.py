@@ -1,7 +1,8 @@
 from app import app
-from flask import render_template
+from flask import render_template, flash, redirect
 from pymongo import *
 from app import mongo_setup
+from .ScheduleCreator import ScheduleCreator
 
 # @param: name - name of person to update
 # @param: classes - array of classes for a person
@@ -78,3 +79,8 @@ output = convertCalculatedArrayToReadableTimes(calculateFreeTime(compareFreeArra
 @app.route('/index')
 def index():
     return render_template('index.html', output=output, title='Schedule Comparison')
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    form=ScheduleCreator()
+    return render_template('create.html', title='Schedule Creator', form=form)

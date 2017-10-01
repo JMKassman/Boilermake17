@@ -69,3 +69,6 @@ flask/
 
 #mongo login info
 app/mongo_setup.py
+
+#wtf config file
+app/config.py
