@@ -7,7 +7,7 @@ from .NameInput import NameInput
 
 baseAvailabilityArray = []
 
-for i in range(287):
+for i in range(288):
     baseAvailabilityArray.append(True)
 
 # @param: name - name of person to update
