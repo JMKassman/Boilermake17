@@ -7,8 +7,18 @@
 		{% endif %}
   </head>
   <body>
-    <div>Schedule Comparison: <a href='/index'>Home</a></div>
+    <div>Schedule Comparison: <a href='/index'>Home</a> <a href='/create'>Add Schedule</a></div>
     <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <script>
+        var messages = {{ messages | safe }};
+        for (var i=0; i<messages.length; i++) {
+          alert(messages[i]);
+        }
+      </script>
+    {% endif %}
+    {% endwith %}
     <h1>{{ title }}</h1>
     {% block content %}{% endblock %}
   </body>
