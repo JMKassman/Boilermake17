@@ -1,4 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+  <h2>Please enter two names of people in the database to compare schedules</h2>
+  <form action="" method="post" name="create">
+    {{ form.hidden_tag() }}
+    <p>Person 1: {{ form.name1(size=80) }}</p>
+    <p>Person 2: {{ form.name2(size=80) }}</p>
+    <p><input type="submit" value="Submit"></p>
+  </form>
+
   <p>{{ output }}</p>
 {% endblock %}

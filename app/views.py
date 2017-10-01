@@ -3,6 +3,7 @@ from flask import render_template, flash, redirect, request
 from pymongo import *
 from app import mongo_setup
 from .ScheduleCreator import ScheduleCreator
+from .NameInput import NameInput
 
 baseAvailabilityArray = []
 
@@ -57,35 +58,70 @@ def convertCalculatedArrayToReadableTimes(arr):
     str0 = "Time when both people are free: "
     length = len(arr[0])
     for i in range(length):
-        tmp0 = str(arr[0][i] // 60) + ":" + str(arr[0][i] % 60)
-        tmp1 = str(arr[1][i] // 60) + ":" + str((arr[1][i] % 60) + 5)
+        tmp0 = ""
+        tmp1 = ""
+        hour0 = arr[0][i] // 60
+        minute0 = arr[0][i] % 60
+        hour1 = arr[1][i] // 60
+        minute1 = arr[1][i] % 60 + 5
+        if minute0 == 60:
+            hour0 = hour0 + 1
+            minute0 = 0
+        if minute1 == 60:
+            hour1 = hour1 + 1
+            minute1 = 0
+        if hour0 == 0 and minute0 == 0:
+            tmp0 = "00:00"
+        elif hour0 == 0:
+            tmp0 = "00:" + str(minute0)
+        elif minute0 == 0:
+            tmp0 = str(hour0) + ":00"
+        else:
+            tmp0 = str(hour0) + ":" + str(minute0)
+
+        if hour1 == 0 and minute1 == 0:
+            tmp1 = "00:00"
+        elif hour1 == 0:
+            tmp1 = "00:" + str(minute1)
+        elif minute1 == 0:
+            tmp1 = str(hour1) + ":00"
+        else:
+            tmp1 = str(hour1) + ":" + str(minute1)
         str0 = str0 + tmp0 + " - " +  tmp1 + ", "
     return str0[:-2]
 
 db = mongo_setup.client.Boilermake17
 collection = db.main
 
-
-
-test = []
-
-cursor = collection.find()
-
-for element in cursor:
-    test.append(element)
-
-
-
 #output = convertCalculatedArrayToReadableTimes(calculateFreeTime(compareFreeArrays(FreeArray0, FreeArray1)))
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html', output=test[0], title='Schedule Comparison')
+    form = NameInput(request.form)
+    if request.method == 'POST' and form.validate_on_submit():
+        name1 = form.name1.data
+        name2 = form.name2.data
+        test = []
+        cursor = collection.find({'$or': [{'name':name1},{'name':name2}]})
+        for element in cursor:
+            test.append(element)
+        if len(test) >= 2:
+            schedule0 = test[0]['Schedule']
+            FreeArray0 = test[0]['FreeTime']
+
+            schedule1 = test[1]['Schedule']
+            FreeArray1 = test[1]['FreeTime']
+
+            output = convertCalculatedArrayToReadableTimes(calculateFreeTime(compareFreeArrays(FreeArray0, FreeArray1)))
+        else:
+            output = "Something went wrong. One or both of the names entered did not match an entry"
+        return render_template('index.html', output=output, title='Schedule Comparison', form=form)
+    return render_template('index.html', output="", title='Schedule Comparison', form=form)
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
-    form=ScheduleCreator(request.form)
+    form = ScheduleCreator(request.form)
     if request.method == 'POST' and form.validate_on_submit():
         flash('Document has been created')
         name = form.name.data
