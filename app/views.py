@@ -10,6 +10,9 @@ baseAvailabilityArray = []
 for i in range(288):
     baseAvailabilityArray.append(True)
 
+def encodeTime(hour, minutes):
+    return (hour * 60 + minutes)
+
 # @param: name - name of person to update
 # @param: classes - array of classes for a person
 # @param: freeArray - array of free time slots
@@ -126,20 +129,40 @@ def create():
         flash('Document has been created')
         name = form.name.data
         course1 = form.course1.data
-        start_time1 = form.start_time1.data
-        end_time1 = form.end_time1.data
+        start_time1hour = form.start_time1hour.data
+        start_time1min = form.start_time1min.data
+        end_time1hour = form.end_time1hour.data
+        end_time1min = form.end_time1min.data
         course2 = form.course2.data
-        start_time2 = form.start_time2.data
-        end_time2 = form.end_time2.data
+        start_time2hour = form.start_time2hour.data
+        start_time2min = form.start_time2min.data
+        end_time2hour = form.end_time2hour.data
+        end_time2min = form.end_time2min.data
         course3 = form.course3.data
-        start_time3 = form.start_time3.data
-        end_time3 = form.end_time3.data
+        start_time3hour = form.start_time3hour.data
+        start_time3min = form.start_time3min.data
+        end_time3hour = form.end_time3hour.data
+        end_time3min = form.end_time3min.data
         course4 = form.course4.data
-        start_time4 = form.start_time4.data
-        end_time4 = form.end_time4.data
+        start_time4hour = form.start_time4hour.data
+        start_time4min = form.start_time4min.data
+        end_time4hour = form.end_time4hour.data
+        end_time4min = form.end_time4min.data
         course5 = form.course5.data
-        start_time5 = form.start_time5.data
-        end_time5 = form.end_time5.data
+        start_time5hour = form.start_time5hour.data
+        start_time5min = form.start_time5min.data
+        end_time5hour = form.end_time5hour.data
+        end_time5min = form.end_time5min.data
+        start_time1 = encodeTime(start_time1hour, start_time1min)
+        end_time1 = encodeTime(end_time1hour, end_time1min)
+        start_time2 = encodeTime(start_time2hour, start_time2min)
+        end_time2 = encodeTime(end_time2hour, end_time2min)
+        start_time3 = encodeTime(start_time3hour, start_time3min)
+        end_time3 = encodeTime(end_time3hour, end_time3min)
+        start_time4 = encodeTime(start_time4hour, start_time4min)
+        end_time4 = encodeTime(end_time4hour, end_time4min)
+        start_time5 = encodeTime(start_time5hour, start_time5min)
+        end_time5 = encodeTime(end_time5hour, end_time5min)
         baseAvailabilityArray = []
         for i in range(288):
             baseAvailabilityArray.append(True)

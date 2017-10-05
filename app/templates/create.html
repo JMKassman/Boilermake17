@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Create a new schedule</h2>
-<p><b>Note: all times must be inserted as minutes after midnight. Leave fields as default if you have no more courses to add</b></p>
+<p><b>Note: enter time in HH:MM format. Leave fields as default if you have no more courses to add</b></p>
 <form action="" method="post" name="create">
   {{ form.hidden_tag() }}
   <p>Name: {{ form.name(size=80) }}</p>
@@ -10,10 +10,10 @@
       <p>Course: {{ form.course1(size=80) }}</p>
       <ul>
         <li>
-          <p>Start Time: {{ form.start_time1(size=10) }}</p>
+          <p>Start Time: {{ form.start_time1hour(size=2, maxlength=2) }} : {{ form.start_time1min(size=2, maxlength=2) }}</p>
         </li>
         <li>
-          <p>End Time: {{ form.end_time1(size=10) }}</p>
+          <p>End Time: {{ form.end_time1hour(size=2, maxlength=2) }} : {{ form.end_time1min(size=2, maxlength=2) }}</p>
         </li>
       </ul>
     </li>
@@ -21,10 +21,10 @@
       <p>Course: {{ form.course2(size=80) }}</p>
       <ul>
         <li>
-          <p>Start Time: {{ form.start_time2(size=10) }}</p>
+          <p>Start Time: {{ form.start_time2hour(size=2, maxlength=2) }} : {{ form.start_time2min(size=2, maxlength=2) }}</p>
         </li>
         <li>
-          <p>End Time: {{ form.end_time2(size=10) }}</p>
+          <p>End Time: {{ form.end_time2hour(size=2, maxlength=2) }} : {{ form.end_time2min(size=2, maxlength=2) }}</p>
         </li>
       </ul>
     </li>
@@ -32,10 +32,10 @@
       <p>Course: {{ form.course3(size=80) }}</p>
       <ul>
         <li>
-          <p>Start Time: {{ form.start_time3(size=10) }}</p>
+          <p>Start Time: {{ form.start_time3hour(size=2, maxlength=2) }} : {{ form.start_time3min(size=2, maxlength=2) }}</p>
         </li>
         <li>
-          <p>End Time: {{ form.end_time3(size=10) }}</p>
+          <p>End Time: {{ form.end_time3hour(size=2, maxlength=2) }} : {{ form.end_time3min(size=2, maxlength=2) }}</p>
         </li>
       </ul>
     </li>
@@ -43,10 +43,10 @@
       <p>Course: {{ form.course4(size=80) }}</p>
       <ul>
         <li>
-          <p>Start Time: {{ form.start_time4(size=10) }}</p>
+          <p>Start Time: {{ form.start_time4hour(size=2, maxlength=2) }} : {{ form.start_time4min(size=2, maxlength=2) }}</p>
         </li>
         <li>
-          <p>End Time: {{ form.end_time4(size=10) }}</p>
+          <p>End Time: {{ form.end_time4hour(size=2, maxlength=2) }} : {{ form.end_time4min(size=2, maxlength=2) }}</p>
         </li>
       </ul>
     </li>
@@ -54,10 +54,10 @@
       <p>Course: {{ form.course5(size=80) }}</p>
       <ul>
         <li>
-          <p>Start Time: {{ form.start_time5(size=10) }}</p>
+          <p>Start Time: {{ form.start_time5hour(size=2, maxlength=2) }} : {{ form.start_time5min(size=2, maxlength=2) }}</p>
         </li>
         <li>
-          <p>End Time: {{ form.end_time5(size=10) }}</p>
+          <p>End Time: {{ form.end_time5hour(size=2, maxlength=2) }} : {{ form.end_time5min(size=2, maxlength=2) }}</p>
         </li>
       </ul>
     </li>
