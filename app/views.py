@@ -14,7 +14,7 @@ for i in range(288):
 # @param: classes - array of classes for a person
 # @param: freeArray - array of free time slots
 def modifyFreeArray(name, classes, freeArray):
-    freeArray = baseAvailabilityArray
+    #freeArray = baseAvailabilityArray
     #TODO find out why the array data is persisting and remove the above line
     for element in classes:
         print(element)
@@ -140,6 +140,9 @@ def create():
         course5 = form.course5.data
         start_time5 = form.start_time5.data
         end_time5 = form.end_time5.data
+        baseAvailabilityArray = []
+        for i in range(288):
+            baseAvailabilityArray.append(True)
         document = {'name':name, 'Schedule': {'Monday': [{'course': course1, 'start_time': start_time1, 'end_time': end_time1}, {'course': course2, 'start_time': start_time2, 'end_time': end_time2}, {'course': course3, 'start_time': start_time3, 'end_time': end_time3}, {'course': course4, 'start_time': start_time4, 'end_time': end_time4}, {'course': course5, 'start_time': start_time5, 'end_time': end_time5}]}, 'FreeTime': baseAvailabilityArray}
         collection.insert(document)
         schedule = document['Schedule']
